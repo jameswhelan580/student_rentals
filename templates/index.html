@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Rent Reach - Home{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero is-large hero-home-bg">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-white">Close to Campus, Closer to Comfort</h1>
+      <p class="subtitle has-text-white">Discover your perfect student accommodation in Galway</p>
+
+      <!-- Browse Properties Button Only -->
+      <a href="{{ url_for('list_properties') }}" class="button is-light is-large" style="margin-top: 20px;">Browse Properties</a>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS SECTION -->
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Why Choose Rent Reach?</h2>
+    <div class="columns is-multiline">
+      <div class="column is-one-third">
+        <div class="feature-box box has-background-light">
+          <i class="fas fa-map-marker-alt feature-icon"></i>
+          <h3 class="title is-4">Prime Locations</h3>
+          <p>Find accommodations within walking distance of your university, cafes, and public transport.</p>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="feature-box box has-background-light">
+          <i class="fas fa-money-bill-wave feature-icon"></i>
+          <h3 class="title is-4">Affordable Pricing</h3>
+          <p>Compare different rental options and find the best value for your budget.</p>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="feature-box box has-background-light">
+          <i class="fas fa-thumbs-up feature-icon"></i>
+          <h3 class="title is-4">Trusted Listings</h3>
+          <p>Verified properties ensure you rent with confidence—no scams, just great homes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

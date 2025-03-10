@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Rent Reach{% endblock %}</title>
+  <!-- Include Bulma from CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- Include Font Awesome from CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Your custom styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <!-- Header with Hero and Navbar -->
+  <header class="hero is-dark hero-home-bg">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Rent Reach</h1>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="{{ url_for('home') }}">
+                <i class="fas fa-home"></i>&nbsp;Home
+              </a>
+              <a class="navbar-item" href="{{ url_for('list_properties') }}">Properties</a>
+              <a class="navbar-item" href="{{ url_for('about') }}">About</a>
+              <a class="navbar-item" href="{{ url_for('contact') }}">Contact</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="section">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>&copy; 2025 Rent Reach. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

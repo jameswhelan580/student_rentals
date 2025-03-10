@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Rent Reach{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero is-large hero-contact">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Let's Get in Touch</h1>
+      <p class="subtitle">Have questions? Need help? We’re here for you!</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT OPTIONS -->
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Ways to Contact Us</h2>
+    
+    <div class="columns is-multiline">
+      <div class="column is-one-third">
+        <div class="box contact-card">
+          <i class="fas fa-envelope contact-icon"></i>
+          <h3 class="title is-4">Email Us</h3>
+          <p>Send us a message anytime and we’ll get back to you soon.</p>
+          <p><strong>support@rentreach.com</strong></p>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="box contact-card">
+          <i class="fas fa-phone-alt contact-icon"></i>
+          <h3 class="title is-4">Call Us</h3>
+          <p>Want to talk to a real person? Give us a call!</p>
+          <p><strong>+353 1 234 5678</strong></p>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="box contact-card">
+          <i class="fas fa-map-marker-alt contact-icon"></i>
+          <h3 class="title is-4">Visit Us</h3>
+          <p>We’re based in Galway, stop by for a chat.</p>
+          <p><strong>123 College Road, Galway</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Send Us a Message</h2>
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box contact-form">
+          {% if success %}
+            <article class="message is-success">
+              <div class="message-header">
+                <p>Message Sent</p>
+              </div>
+              <div class="message-body">
+                Thank you, {{ name }}! Your message has been received. We'll get back to you shortly.
+              </div>
+            </article>
+          {% else %}
+            <form method="post" action="{{ url_for('contact') }}">
+              <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input class="input" type="text" name="name" placeholder="Enter your name" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="email" name="email" placeholder="Enter your email" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                  <textarea class="textarea" name="message" placeholder="How can we help?" required></textarea>
+                </div>
+              </div>
+
+              <div class="field has-text-centered">
+                <button class="button is-primary is-medium" type="submit">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

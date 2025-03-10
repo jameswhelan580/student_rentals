@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ property.title }} - Rent Reach{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-image">
+        <figure class="image is-4by3">
+            <img src="{{ url_for('static', filename='images/' ~ property.image) }}" alt="{{ property.title }}">
+        </figure>
+    </div>
+    <div class="card-content">
+        <h2 class="title is-3">{{ property.title }}</h2>
+        <p>{{ property.description }}</p>
+        <p><strong>Price:</strong> {{ property.price }}</p>
+        <a href="{{ url_for('list_properties') }}" class="button is-link">Back to properties</a>
+    </div>
+</div>
+{% endblock %}
