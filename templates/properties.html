@@ -1,34 +1,45 @@
-{% extends "base.html" %}
-
-{% block title %}Available Properties - Rent Reach{% endblock %}
-
-{% block content %}
-<h2 class="title is-3">Available Properties</h2>
-<div class="columns is-multiline">
-    {% for property in properties %}
-    <div class="column is-one-third">
-        <div class="card" style="margin-bottom: 20px;">
-            <div class="card-image">
-                <figure class="image is-4by3">
-                    <img src="{{ url_for('static', filename='images/' + property.image) }}" alt="{{ property.title }}">
-                </figure>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ company_name }} - Properties</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ company_name }}</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('list_properties') }}">Properties</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="properties">
+            <h2>Available Properties</h2>
+            <form method="GET" action="{{ url_for('list_properties') }}">
+                <input type="text" name="search" placeholder="Search properties...">
+                <button type="submit" class="btn">Search</button>
+            </form>
+            <div class="property-grid">
+                {% for property in properties %}
+                    <div class="property-card">
+                        <a href="{{ url_for('property_detail', property_id=property.id) }}">
+                            <!-- Capital "Images" folder to match your static folder -->
+                            <img src="{{ url_for('static', filename='Images/' ~ property.image) }}" alt="{{ property.title }}">
+                            <div class="property-info">
+                                <h3>{{ property.title }}</h3>
+                                <p>{{ property.price }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="card-content">
-                <p class="title is-4">
-                    <a href="{{ url_for('property_detail', property_id=property.id) }}">
-                        {{ property.title }}
-                    </a>
-                </p>
-                <p>{{ property.description }}</p>
-                <p><strong>Price:</strong> {{ property.price }}</p>
-            </div>
-            <footer class="card-footer">
-                <a href="{{ url_for('property_detail', property_id=property.id) }}" class="card-footer-item button is-link is-outlined">
-                    View Details
-                </a>
-            </footer>
-        </div>
-    </div>
-    {% endfor %}
-</div>
-{% endblock %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 {{ company_name }}. All rights reserved.</p>
+    </footer>
+</body>
+</html>
