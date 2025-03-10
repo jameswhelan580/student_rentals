@@ -4,13 +4,13 @@ app = Flask(__name__)
 app.secret_key = 'mysecretkey'  # Set a secret key for session management
 
 # Updated mock data for property listings with images (assume images are in static/images/)
-properties = [
+properties = properties = [
     {
         "id": 1,
         "title": "Modern Studio Apartment in Galway City Centre",
         "description": "A cozy, modern studio for students, close to campus.",
         "price": "€700/month",
-        "image": "property1.jpg"  # Ensure this matches an actual file
+        "image": "property1.jpg"
     },
     {
         "id": 2,
@@ -27,6 +27,7 @@ properties = [
         "image": "property3.jpg"
     }
 ]
+
 
 @app.route('/')
 def home():

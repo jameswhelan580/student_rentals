@@ -10,7 +10,7 @@
         <div class="card" style="margin-bottom: 20px;">
             <div class="card-image">
                 <figure class="image is-4by3">
-                    <img src="{{ url_for('static', filename='images/' ~ property.image) }}" alt="{{ property.title }}">
+                    <img src="{{ url_for('static', filename='images/' + property.image) }}" alt="{{ property.title }}">
                 </figure>
             </div>
             <div class="card-content">
