@@ -205,5 +205,22 @@ def contact():
 def blog():
     return render_template('blog.html', company_name=COMPANY_NAME, blog_posts=blog_posts)
 
+@app.route('/submit_request', methods=['POST'])
+def submit_request():
+    # Here you can handle the form data
+    full_name = request.form['name']
+    age = request.form['age']
+    university_email = request.form['email']
+    phone_number = request.form['phone']
+    current_address = request.form['address']
+    past_rental_reference = request.form['reference']
+    cover_letter = request.form['cover_letter']
+
+    # For example, print the submitted data (or save it to a database)
+    print(f"Request submitted: {full_name}, {university_email}")
+
+    # Redirect to a thank you page or the property details page
+    return redirect(url_for('property_detail', property_id=request.args.get('property_id')))
+
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000, use_reloader=False)

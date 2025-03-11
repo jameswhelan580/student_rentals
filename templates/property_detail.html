@@ -4,6 +4,43 @@
   <meta charset="UTF-8">
   <title>{{ company_name }} - Property Detail</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -63,11 +100,68 @@
         <p class="testimonial-author">- {{ property.testimonial_author }}</p>
       </section>
       
+      <!-- Request Button and Modal -->
+      <button class="btn request-btn" onclick="openModal()">Request</button>
       <a class="btn" href="{{ url_for('list_properties') }}">Back to Properties</a>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2>Request Details</h2>
+          <form action="{{ url_for('submit_request') }}" method="POST">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required><br><br>
+            <label for="email">University Email</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" required><br><br>
+            <label for="address">Current Address</label>
+            <input type="text" id="address" name="address" required><br><br>
+            <label for="reference">Past Rental Reference</label>
+            <input type="text" id="reference" name="reference" required><br><br>
+            <label for="cover_letter">Cover Letter</label><br>
+            <textarea id="cover_letter" name="cover_letter" rows="4" cols="50" required></textarea><br><br>
+            <button type="submit" class="btn">Submit Request</button>
+          </form>
+        </div>
+      </div>
+
     </section>
   </main>
   <footer>
     <p>&copy; 2025 {{ company_name }}. All rights reserved.</p>
   </footer>
+
+  <!-- Add JavaScript to handle modal -->
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.querySelector(".request-btn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    function openModal() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
