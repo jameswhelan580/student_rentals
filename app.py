@@ -14,7 +14,24 @@ properties = [
     {
         "id": 1,
         "title": "Modern Studio Apartment in Galway City Centre",
-        "description": "A cozy, modern studio for students, close to campus.",
+        "description": (
+            "A cozy, modern studio for students, close to campus. "
+            "This bright and airy apartment features floor-to-ceiling windows, "
+            "high-speed internet, and on-site laundry facilities. "
+            "Located in the heart of Galway, you'll be just steps away from cafés, shops, and nightlife."
+        ),
+        "bedrooms": 1,
+        "bathrooms": 1,
+        "area": 30,  # in square meters
+        "furnished": "Fully furnished",
+        "heating": "Electric",
+        "parking": "On-street parking available",
+        "pets": "No pets allowed",
+        "smoking": "No smoking allowed",
+        "lease": "12 months minimum",
+        "deposit": "One month's rent",
+        "utilities": "Electricity and internet included",
+        "amenities": ["High-speed internet", "Laundry facilities", "Close to public transport"],
         "price": "€700/month",
         "image": "property1.jpg",
         "seller": "Galway Homes Realty",
@@ -25,7 +42,24 @@ properties = [
     {
         "id": 2,
         "title": "Spacious Two-Bedroom Apartment in Salthill",
-        "description": "A beautiful apartment with sea views.",
+        "description": (
+            "A beautiful apartment with sweeping sea views. "
+            "This two-bedroom gem boasts a large living room, two bathrooms, and a fully equipped kitchen. "
+            "Enjoy morning walks on the promenade and easy access to local restaurants and pubs. "
+            "Perfect for families or professionals seeking a tranquil coastal lifestyle."
+        ),
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "area": 80,  # in square meters
+        "furnished": "Partly furnished",
+        "heating": "Gas",
+        "parking": "Private parking available",
+        "pets": "Pets allowed",
+        "smoking": "No smoking allowed",
+        "lease": "Flexible lease options",
+        "deposit": "Two month's rent",
+        "utilities": "Not included",
+        "amenities": ["Sea views", "Fully equipped kitchen", "Private parking"],
         "price": "€1,200/month",
         "image": "property2.jpg",
         "seller": "Salthill Property Group",
@@ -36,7 +70,24 @@ properties = [
     {
         "id": 3,
         "title": "Cozy Shared House in Residential Galway",
-        "description": "A great shared home for students.",
+        "description": (
+            "A great shared home for students or young professionals. "
+            "Featuring four bedrooms, a spacious common area, and a large backyard, "
+            "this house offers a balance of privacy and community living. "
+            "Conveniently located near bus routes, local shops, and parks, it's perfect for those looking for an affordable yet comfortable space."
+        ),
+        "bedrooms": 4,
+        "bathrooms": 2,
+        "area": 120,  # in square meters
+        "furnished": "Partly furnished",
+        "heating": "Oil",
+        "parking": "Driveway parking available",
+        "pets": "No pets allowed",
+        "smoking": "No smoking allowed",
+        "lease": "6 months minimum",
+        "deposit": "One month's rent",
+        "utilities": "Shared utilities",
+        "amenities": ["Large backyard", "Close to public transport", "Nearby shops and parks"],
         "price": "€450 per person/month",
         "image": "property3.jpg",
         "seller": "Galway Shared Homes",
