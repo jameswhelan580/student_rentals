@@ -1,61 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ company_name }} - Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <!-- Optional: Include Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <header>
-        <h1>{{ company_name }}</h1>
-        <p>{{ slogan }}</p>
-        <nav>
-            <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('list_properties') }}">Properties</a>
-            <a href="{{ url_for('about') }}">About</a>
-            <a href="{{ url_for('contact') }}">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <!-- Vibrant Hero Section -->
-        <section class="hero vibrant-hero">
-            <div class="hero-overlay">
-                <div class="hero-content">
-                    <h2>Find Your Perfect Home</h2>
-                    <p>Step into a world of vibrant living, comfort, and style. Discover spaces that reflect your personality and bring your dreams to life.</p>
-                    <a class="btn" href="{{ url_for('list_properties') }}">Explore Properties <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
+<!-- templates/index.html -->
+{% extends "base.html" %}
 
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <h3>Why Choose Us?</h3>
-                <div class="feature-items">
-                    <div class="feature-item">
-                        <i class="fas fa-home fa-3x"></i>
-                        <h4>Quality Homes</h4>
-                        <p>We offer well-designed, premium properties that cater to your every need.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-smile-beam fa-3x"></i>
-                        <h4>Excellent Service</h4>
-                        <p>Our dedicated team is here to help you find the perfect home.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-heart fa-3x"></i>
-                        <h4>Trusted Brand</h4>
-                        <p>We are committed to building lasting relationships with our clients.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 {{ company_name }}. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+{% block title %}
+  Home - {{ company_name }}
+{% endblock %}
+
+{% block content %}
+  <!-- Vibrant Hero Section -->
+  <section class="hero vibrant-hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h2>Find Your Perfect Home</h2>
+        <p>Step into a world of vibrant living, comfort, and style. Discover spaces that reflect your personality and bring your dreams to life.</p>
+        <a class="btn" href="{{ url_for('list_properties') }}">
+          Explore Properties <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h3>Why Choose Us?</h3>
+      <div class="feature-items">
+        <div class="feature-item">
+          <i class="fas fa-home fa-3x"></i>
+          <h4>Quality Homes</h4>
+          <p>We offer well-designed, premium properties that cater to your every need.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-smile-beam fa-3x"></i>
+          <h4>Excellent Service</h4>
+          <p>Our dedicated team is here to help you find the perfect home.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-heart fa-3x"></i>
+          <h4>Trusted Brand</h4>
+          <p>We are committed to building lasting relationships with our clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

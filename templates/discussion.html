@@ -1,0 +1,59 @@
+<!-- templates/discussion.html -->
+{% extends "base.html" %}
+
+{% block title %}
+  Discussion Forum - {{ company_name }}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1 class="mb-3">Discussion Forum</h1>
+    <p>Welcome to the discussion board! Start a new thread or join existing conversations.</p>
+    
+    <!-- New Thread Form -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Start a New Discussion Thread</h3>
+      </div>
+      <div class="card-body">
+        <form action="{{ url_for('discussion') }}" method="post">
+          <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject" required>
+          </div>
+          <div class="mb-3">
+            <label for="question" class="form-label">Question</label>
+            <textarea class="form-control" id="question" name="question" rows="3" placeholder="Type your question here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Post Thread</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- List of Discussion Threads -->
+    <h2>All Discussion Threads</h2>
+    {% if discussion_threads %}
+      <ul class="list-group">
+      {% for thread in discussion_threads %}
+        <li class="list-group-item">
+          <h5>
+            <a href="{{ url_for('discussion_thread', thread_id=thread.id) }}">
+              {{ thread.subject }}
+            </a>
+          </h5>
+          <p>{{ thread.question }}</p>
+          <p>
+            <small>Posted by: {{ thread.author }}</small>
+            | <small>Likes: {{ thread.likes }}</small>
+            {% if thread.replies|length > 0 %}
+              | <small>Replies: {{ thread.replies|length }}</small>
+            {% endif %}
+          </p>
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No discussion threads yet. Be the first to post!</p>
+    {% endif %}
+  </div>
+{% endblock %}

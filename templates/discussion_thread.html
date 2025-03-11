@@ -1,0 +1,56 @@
+<!-- templates/discussion_thread.html -->
+{% extends "base.html" %}
+
+{% block title %}
+  {{ thread.subject }} - Discussion - {{ company_name }}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <a href="{{ url_for('discussion') }}" class="btn btn-secondary mb-3">← Back to Forum</a>
+    <div class="card">
+      <div class="card-header">
+        <h2>{{ thread.subject }}</h2>
+        <p><small>Posted by: {{ thread.author }}</small></p>
+      </div>
+      <div class="card-body">
+        <p>{{ thread.question }}</p>
+        <p><strong>Likes:</strong> {{ thread.likes }}</p>
+        <form action="{{ url_for('like_thread', thread_id=thread.id) }}" method="post">
+          <button type="submit" class="btn btn-outline-primary">Like</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Reply Section -->
+    <h3 class="mt-4">Replies</h3>
+    {% if thread.replies %}
+      <ul class="list-group mb-4">
+      {% for reply in thread.replies %}
+        <li class="list-group-item">
+          <p>{{ reply.reply }}</p>
+          <p><small>By: {{ reply.author }}</small></p>
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No replies yet. Be the first to reply!</p>
+    {% endif %}
+    
+    <!-- Reply Form -->
+    <div class="card">
+      <div class="card-header">
+        <h4>Leave a Reply</h4>
+      </div>
+      <div class="card-body">
+        <form action="{{ url_for('discussion_thread', thread_id=thread.id) }}" method="post">
+          <div class="mb-3">
+            <label for="reply" class="form-label">Your Reply</label>
+            <textarea class="form-control" id="reply" name="reply" rows="3" placeholder="Share your thoughts..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Post Reply</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

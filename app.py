@@ -150,6 +150,10 @@ blog_posts = [
     }
 ]
 
+# In-memory discussion forum data
+discussion_threads = []
+next_thread_id = 1
+
 @app.route('/')
 def home():
     return render_template('index.html', company_name=COMPANY_NAME, slogan=SLOGAN)
@@ -221,6 +225,63 @@ def submit_request():
 
     # Redirect to a thank you page or the property details page
     return redirect(url_for('property_detail', property_id=request.args.get('property_id')))
+
+# =============================
+# Discussion Forum Functionality
+# =============================
+
+@app.route('/discussion', methods=['GET', 'POST'])
+def discussion():
+    if not session.get('verified'):
+        return redirect(url_for('enter_email'))
+    global next_thread_id
+    if request.method == 'POST':
+        # Create a new discussion thread
+        subject = request.form.get('subject')
+        question = request.form.get('question')
+        if subject and question:
+            new_thread = {
+                "id": next_thread_id,
+                "subject": subject,
+                "question": question,
+                "author": session.get('email', 'Anonymous'),
+                "likes": 0,
+                "replies": []
+            }
+            discussion_threads.append(new_thread)
+            next_thread_id += 1
+            return redirect(url_for('discussion'))
+    return render_template('discussion.html', discussion_threads=discussion_threads, company_name=COMPANY_NAME)
+
+@app.route('/discussion/<int:thread_id>', methods=['GET', 'POST'])
+def discussion_thread(thread_id):
+    if not session.get('verified'):
+        return redirect(url_for('enter_email'))
+    thread = next((t for t in discussion_threads if t["id"] == thread_id), None)
+    if not thread:
+        return "Thread not found", 404
+    if request.method == 'POST':
+        # Adding a reply to the thread
+        reply_text = request.form.get('reply')
+        if reply_text:
+            new_reply = {
+                "id": len(thread["replies"]) + 1,
+                "reply": reply_text,
+                "author": session.get('email', 'Anonymous')
+            }
+            thread["replies"].append(new_reply)
+            return redirect(url_for('discussion_thread', thread_id=thread_id))
+    return render_template('discussion_thread.html', thread=thread, company_name=COMPANY_NAME)
+
+@app.route('/discussion/<int:thread_id>/like', methods=['POST'])
+def like_thread(thread_id):
+    if not session.get('verified'):
+        return redirect(url_for('enter_email'))
+    thread = next((t for t in discussion_threads if t["id"] == thread_id), None)
+    if not thread:
+        return "Thread not found", 404
+    thread["likes"] += 1
+    return redirect(url_for('discussion_thread', thread_id=thread_id))
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000, use_reloader=False)
