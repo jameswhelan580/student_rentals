@@ -204,11 +204,6 @@ def contact():
         return render_template('contact.html', success=True, name=name, company_name=COMPANY_NAME, contact_email=CONTACT_EMAIL)
     return render_template('contact.html', success=False, company_name=COMPANY_NAME, contact_email=CONTACT_EMAIL)
 
-# New Blog Route
-@app.route('/blog')
-def blog():
-    return render_template('blog.html', company_name=COMPANY_NAME, blog_posts=blog_posts)
-
 @app.route('/submit_request', methods=['POST'])
 def submit_request():
     # Here you can handle the form data

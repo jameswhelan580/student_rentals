@@ -6,36 +6,46 @@
 {% endblock %}
 
 {% block content %}
-  <!-- Vibrant Hero Section -->
-  <section class="hero vibrant-hero">
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <h2>Find Your Perfect Home</h2>
-        <p>Step into a world of vibrant living, comfort, and style. Discover spaces that reflect your personality and bring your dreams to life.</p>
-        <a class="btn" href="{{ url_for('list_properties') }}">
-          Explore Properties <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
+  <!-- Hero Section in Red (matching About Page) -->
+  <section class="text-center p-5" style="background-color: #8B0000; color: #fff;">
+    <div class="container">
+      <!-- Company Name & Slogan -->
+      <h1 class="mb-2">{{ company_name }}</h1>
+      <p class="fs-5 mb-4">{{ slogan }}</p>
+
+      <!-- Headline & Description -->
+      <h2 class="mb-3">Find Your Perfect Home</h2>
+      <p class="lead mb-4">
+        Step into a world of vibrant living, comfort, and style. 
+        Discover spaces that reflect your personality and bring your dreams to life!
+      </p>
+
+      <!-- Call-to-Action Button -->
+      <a href="{{ url_for('list_properties') }}"
+         class="btn btn-warning btn-lg fw-bold shadow-lg"
+         style="font-size: 1.2rem;">
+        Browse Properties
+      </a>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features">
+  <!-- Features Section in White -->
+  <section class="py-5" style="background-color: #fff;">
     <div class="container">
-      <h3>Why Choose Us?</h3>
-      <div class="feature-items">
-        <div class="feature-item">
-          <i class="fas fa-home fa-3x"></i>
+      <h3 class="text-center mb-5">Why Choose Us?</h3>
+      <div class="row">
+        <div class="col-md-4 text-center mb-4">
+          <i class="fas fa-home fa-3x mb-3"></i>
           <h4>Quality Homes</h4>
           <p>We offer well-designed, premium properties that cater to your every need.</p>
         </div>
-        <div class="feature-item">
-          <i class="fas fa-smile-beam fa-3x"></i>
+        <div class="col-md-4 text-center mb-4">
+          <i class="fas fa-smile-beam fa-3x mb-3"></i>
           <h4>Excellent Service</h4>
           <p>Our dedicated team is here to help you find the perfect home.</p>
         </div>
-        <div class="feature-item">
-          <i class="fas fa-heart fa-3x"></i>
+        <div class="col-md-4 text-center mb-4">
+          <i class="fas fa-heart fa-3x mb-3"></i>
           <h4>Trusted Brand</h4>
           <p>We are committed to building lasting relationships with our clients.</p>
         </div>
